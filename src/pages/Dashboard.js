@@ -5,6 +5,9 @@ import NewCustomersChart from '../components/NewCustomersChart';
 import RepeatCustomersChart from '../components/RepeatCustomersChart';
 import GeographicalDistributionMap from '../components/GeographicalDistributionMap';
 import CustomerLifetimeValueChart from '../components/CustomerLifetimeValueChart';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { 
     fetchNewCustomers, 
     fetchRepeatCustomers, 
@@ -116,7 +119,7 @@ const Dashboard = () => {
                         fill: true,
                     }],
                 });
-                
+
             } catch (error) {
                 console.error('Failed to fetch data:', error);
             }
@@ -125,17 +128,41 @@ const Dashboard = () => {
         loadData();
     }, []);
 
-    return (
+    // return (
+    //     <div>
+    //         <h1>Dashboard</h1>
+    //         {totalSalesData && <TotalSalesChart data={totalSalesData} />}
+    //         {salesGrowthRateData && <SalesGrowthRateChart data={salesGrowthRateData} />}
+    //         {newCustomersData && <NewCustomersChart data={newCustomersData} />}
+    //         {repeatCustomersData && <RepeatCustomersChart data={repeatCustomersData} />}
+    //         {geographicalData && <GeographicalDistributionMap data={geographicalData} />}
+    //         {customerLifetimeValueData && <CustomerLifetimeValueChart data={customerLifetimeValueData} />}
+    //     </div>
+    // );
+    //};
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 100,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
+    
+      return (
         <div>
-            <h1>Dashboard</h1>
-            {totalSalesData && <TotalSalesChart data={totalSalesData} />}
-            {salesGrowthRateData && <SalesGrowthRateChart data={salesGrowthRateData} />}
-            {newCustomersData && <NewCustomersChart data={newCustomersData} />}
-            {repeatCustomersData && <RepeatCustomersChart data={repeatCustomersData} />}
-            {geographicalData && <GeographicalDistributionMap data={geographicalData} />}
-            {customerLifetimeValueData && <CustomerLifetimeValueChart data={customerLifetimeValueData} />}
+          <h1>Dashboard</h1>
+          <Slider {...settings}>
+            {totalSalesData && <div><TotalSalesChart data={totalSalesData} /></div>}
+            {salesGrowthRateData && <div><SalesGrowthRateChart data={salesGrowthRateData} /></div>}
+            {newCustomersData && <div><NewCustomersChart data={newCustomersData} /></div>}
+            {repeatCustomersData && <div><RepeatCustomersChart data={repeatCustomersData} /></div>}
+            {geographicalData && <div><GeographicalDistributionMap data={geographicalData} /></div>}
+            {customerLifetimeValueData && <div><CustomerLifetimeValueChart data={customerLifetimeValueData} /></div>}
+          </Slider>
         </div>
-    );
-};
+      );
+    };
+
 
 export default Dashboard;
