@@ -55,7 +55,7 @@ export const fetchGeographicalDistribution = async () => {
 export const fetchCustomerLifetimeValue = async () => {
     try {
         const response = await axios.get(`${API_BASE_URL}/customer-lifetime-value`);
-        console.log(response.data)
+       // console.log(response.data)
         return response.data;
        
     } catch (error) {

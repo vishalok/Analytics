@@ -12,7 +12,7 @@ const getLatLng = async (city) => {
             return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
         }
     } catch (error) {
-        console.error('Error fetching lat/lng:', error);
+   //console.error('Error fetching lat/lng:', error);
     }
     return null;
 };
